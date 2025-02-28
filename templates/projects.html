@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Projects{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Projects</h1>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProjectModal">
+            Add Project
+        </button>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Company</th>
+                    <th>Project Name</th>
+                    <th>Description</th>
+                    <th>Project Manager</th>
+                    <th>Starting Date</th>
+                    <th>Ending Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for project in projects %}
+                <tr>
+                    <td>{{ project.company_name }}</td>
+                    <td>{{ project.project_name }}</td>
+                    <td>{{ project.description }}</td>
+                    <td>{{ project.project_manager }}</td>
+                    <td>{{ project.starting_date }}</td>
+                    <td>{{ project.ending_date or 'Not set' }}</td>
+                    <td>
+                        <span class="badge bg-{{ project.status|replace(' ', '-') }}-subtle text-{{ project.status|replace(' ', '-') }}-emphasis">
+                            {{ project.status|title }}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-primary" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#editProjectModal{{ project.id }}">
+                                Edit
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

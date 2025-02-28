@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _("Invoice") }} #{{ invoice.invoice_number }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>{{ _("Invoice") }} #{{ invoice.invoice_number }}</h1>
+        <div class="btn-group">
+            <a href="{{ url_for('download_invoice_pdf', invoice_id=invoice.id) }}" class="btn btn-primary">
+                <i class="bi bi-download"></i> {{ _("Download PDF") }}
+            </a>
+            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                {{ _("Actions") }}
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <form action="{{ url_for('update_invoice_status', invoice_id=invoice.id) }}" method="post" style="display: inline;">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="status" value="Sent">
+                        <button type="submit" class="dropdown-item">{{ _("Mark as Sent") }}</button>
+                    </form>
+                </li>
+                <li>
+                    <form action="{{ url_for('update_invoice_status', invoice_id=invoice.id) }}" method="post" style="display: inline;">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="status" value="Paid">
+                        <button type="submit" class="dropdown-item">{{ _("Mark as Paid") }}</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row mb-4">
+                <div class="col-sm-6">
+                    <h6 class="mb-3">{{ _("From:") }}</h6>
+                    <div><strong>{{ company.company_name }}</strong></div>
+                    <div>{{ company.address }}</div>
+                    <div>{{ _("Phone:") }} {{ company.phone }}</div>
+                </div>
+                <div class="col-sm-6">
+                    <h6 class="mb-3">{{ _("To:") }}</h6>
+                    <div><strong>{{ client.name }}</strong></div>
+                    <div>{{ client.address }}</div>
+                    <div>{{ _("Phone:") }} {{ client.phone }}</div>
+                    <div>{{ _("Email:") }} {{ client.email }}</div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-sm-6">
+                    <h6 class="mb-3">{{ _("Invoice Details:") }}</h6>
+                    <div>{{ _("Type:") }} {{ invoice.invoice_type }}</div>
+                    <div>{{ _("Issue Date:") }} {{ invoice.issue_date }}</div>
+                    <div>{{ _("Due Date:") }} {{ invoice.due_date }}</div>
+                    <div>{{ _("Status:") }} 
+                        <span class="badge bg-{{ invoice.status|lower }}-subtle text-{{ invoice.status|lower }}-emphasis">
+                            {{ invoice.status }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>{{ _("Description") }}</th>
+                            <th class="text-end">{{ _("Quantity") }}</th>
+                            <th class="text-end">{{ _("Unit Price") }}</th>
+                            <th class="text-end">{{ _("Tax Rate %") }}</th>
+                            <th class="text-end">{{ _("Tax Amount") }}</th>
+                            <th class="text-end">{{ _("Total") }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in invoice.items %}
+                        <tr>
+                            <td>{{ item.description }}</td>
+                            <td class="text-end">{{ "%.2f"|format(item.quantity) }}</td>
+                            <td class="text-end">{{ "%.2f"|format(item.unit_price) }}</td>
+                            <td class="text-end">{{ "%.2f"|format(item.tax_rate) }}%</td>
+                            <td class="text-end">{{ "%.2f"|format(item.tax_amount) }}</td>
+                            <td class="text-end">{{ "%.2f"|format(item.total) }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" class="text-end"><strong>{{ _("Subtotal:") }}</strong></td>
+                            <td class="text-end">{{ "%.2f"|format(invoice.subtotal) }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="text-end"><strong>{{ _("Total Tax:") }}</strong></td>
+                            <td class="text-end">{{ "%.2f"|format(invoice.total_tax) }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="text-end"><strong>{{ _("Total Amount:") }}</strong></td>
+                            <td class="text-end"><strong>{{ "%.2f"|format(invoice.total_amount) }}</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .table tfoot tr td {
+        border-top: 2px solid #dee2e6;
+    }
+</style>
+{% endblock %}

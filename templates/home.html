@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Business Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--gradient-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .feature-icon i {
+            color: white;
+            font-size: 1.75rem;
+        }
+
+        .card:hover .feature-icon {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-md);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-image {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-title {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-blue);
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">Business Management</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == url_for('features') %}active{% endif %}" href="{{ url_for('features') }}">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == url_for('pricing') %}active{% endif %}" href="{{ url_for('pricing') }}">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == url_for('contact') %}active{% endif %}" href="{{ url_for('contact') }}">Contact</a>
+                    </li>
+                </ul>
+                <div class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == url_for('login') %}active{% endif %}" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == url_for('register') %}active{% endif %}" href="{{ url_for('register') }}">Register</a>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content animate-fade-in">
+                    <h1 class="display-4 text-white mb-4">Transform Your Business with Intelligent Management</h1>
+                    <p class="lead text-white-50 mb-5">Elevate your operations with our cutting-edge platform. Experience seamless integration, powerful analytics, and unparalleled efficiency.</p>
+                    <div class="d-grid gap-3 d-sm-flex">
+                        <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg px-5">Start Scaling Your Business</a>
+                        <a href="{{ url_for('features') }}" class="btn btn-outline-light btn-lg px-5">Explore Features</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 hero-image d-none d-lg-block animate-fade-in">
+                    <img src="/static/images/dashboard-preview.png" alt="Business Dashboard Preview" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container py-5">
+
+        <div class="row g-4 py-5">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="feature-icon mb-3">
+                            <i class="bi bi-graph-up-arrow fs-2 text-primary"></i>
+                        </div>
+                        <h3 class="card-title h5">Financial Management</h3>
+                        <p class="card-text">Track your income, expenses, and generate detailed financial reports.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="feature-icon mb-3">
+                            <i class="bi bi-people fs-2 text-primary"></i>
+                        </div>
+                        <h3 class="card-title h5">Client Management</h3>
+                        <p class="card-text">Manage your clients, track interactions, and maintain relationships.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="feature-icon mb-3">
+                            <i class="bi bi-kanban fs-2 text-primary"></i>
+                        </div>
+                        <h3 class="card-title h5">Project Management</h3>
+                        <p class="card-text">Organize tasks, track progress, and collaborate with your team.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row py-5">
+            <div class="col-12 text-center">
+                <h2 class="display-6 mb-4">Ready to Transform Your Business?</h2>
+                <p class="lead mb-4">Join thousands of businesses already using our platform.</p>
+                <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">Start Free Trial</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

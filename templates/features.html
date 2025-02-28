@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Features - Business Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-blue);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+            transform: rotate(45deg);
+        }
+
+        .feature-icon i {
+            color: white;
+            font-size: 2rem;
+            transform: rotate(-45deg);
+        }
+
+        .card:hover .feature-icon {
+            transform: rotate(90deg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .feature-section {
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 35, 66, 0.03) 0%, rgba(27, 75, 138, 0.03) 100%);
+            z-index: -1;
+        }
+
+        .feature-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .feature-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-blue);
+        }
+    </style>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">Business Management</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('features') }}">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('pricing') }}">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
+                    </li>
+                </ul>
+                <div class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 text-white mb-4">Enterprise-Grade Features</h1>
+            <p class="lead text-white-50 mb-0">Discover the tools that power successful businesses</p>
+        </div>
+    </div>
+
+    <div class="feature-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4 animate-fade-in">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mx-auto">
+                                <i class="bi bi-graph-up-arrow"></i>
+                            </div>
+                            <h3 class="card-title h4 mb-3">Financial Analytics</h3>
+                            <p class="card-text text-muted">Harness the power of real-time financial insights with advanced tracking, forecasting, and reporting capabilities.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4 animate-fade-in">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mx-auto">
+                                <i class="bi bi-people"></i>
+                            </div>
+                            <h3 class="card-title h4 mb-3">Client Management</h3>
+                            <p class="card-text text-muted">Build lasting relationships with our comprehensive CRM system designed for seamless communication and project tracking.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4 animate-fade-in">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mx-auto">
+                                <i class="bi bi-kanban"></i>
+                            </div>
+                            <h3 class="card-title h4 mb-3">Project Planning</h3>
+                            <p class="card-text text-muted">Transform your workflow with intuitive project management tools featuring smart task tracking and resource optimization.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4 animate-fade-in">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mx-auto">
+                                <i class="bi bi-lightning"></i>
+                            </div>
+                            <h3 class="card-title h4 mb-3">Business Intelligence</h3>
+                            <p class="card-text text-muted">Make data-driven decisions with powerful analytics and insights that give you a competitive edge.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 animate-fade-in">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mx-auto">
+                                <i class="bi bi-shield-check"></i>
+                            </div>
+                            <h3 class="card-title h4 mb-3">Enterprise Security</h3>
+                            <p class="card-text text-muted">Rest assured with bank-grade security protocols and advanced data protection measures.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 animate-fade-in">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mx-auto">
+                                <i class="bi bi-gear"></i>
+                            </div>
+                            <h3 class="card-title h4 mb-3">Automation Tools</h3>
+                            <p class="card-text text-muted">Streamline operations with intelligent automation that saves time and reduces errors.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5 pt-4">
+                <h2 class="h3 mb-4">Ready to Transform Your Business?</h2>
+                <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg px-5">Start Your Journey</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

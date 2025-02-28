@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Pricing - Business Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .pricing-card {
+            border: none;
+            border-radius: 15px;
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border: 2px solid var(--primary-light);
+        }
+
+        .pricing-header {
+            background: var(--gradient-blue);
+            padding: 2rem;
+            color: white;
+            text-align: center;
+        }
+
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin: 1.5rem 0;
+        }
+
+        .pricing-price small {
+            font-size: 1rem;
+            color: var(--charcoal);
+            opacity: 0.7;
+        }
+
+        .pricing-features {
+            padding: 2rem;
+        }
+
+        .pricing-features li {
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+
+        .pricing-features i {
+            color: var(--primary-light);
+            margin-right: 0.5rem;
+        }
+
+        .pricing-cta {
+            padding: 0 2rem 2rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">Business Management</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('features') }}">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('pricing') }}">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
+                    </li>
+                </ul>
+                <div class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 text-white mb-4">{{ _('Choose Your Growth Path') }}</h1>
+            <p class="lead text-white-50">{{ _('Flexible plans designed to scale with your business') }}</p>
+        </div>
+    </div>
+
+    <div class="container py-5">
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4">
+                <div class="card pricing-card h-100">
+                    <div class="pricing-header">
+                        <h3 class="h4 mb-0">{{ _('Starter') }}</h3>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="pricing-price text-center">
+                            $29<small>/{{ _('month') }}</small>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check2-circle"></i>{{ _('Basic Analytics') }}</li>
+                            <li><i class="bi bi-check2-circle"></i>{{ _('5 Team Members') }}</li>
+                            <li><i class="bi bi-check2-circle"></i>{{ _('2GB Storage') }}</li>
+                            <li><i class="bi bi-check2-circle"></i>{{ _('Email Support') }}</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-cta text-center">
+                        <a href="/register" class="btn btn-primary btn-lg w-100">{{ _('Start Free Trial') }}</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card pricing-card featured h-100">
+                    <div class="pricing-header">
+                        <h3 class="h4 mb-0">{{ _('Professional') }}</h3>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="pricing-price text-center">
+                            $99<small>/{{ _('month') }}</small>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check2-circle"></i>{{ _('Advanced Analytics') }}</li>
+                            <li><i class="bi bi-check2-circle"></i>{{ _('Unlimited Team Members') }}</li>
+                            <li><i class="bi bi-check2-circle"></i>{{ _('10GB Storage') }}</li>
+                            <li><i class="bi bi-check2-circle"></i>{{ _('Priority Support') }}</li>
+                            <li><i class="bi bi-check2-circle"></i>{{ _('Custom Integrations') }}</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-cta text-center">
+                        <a href="/register" class="btn btn-primary btn-lg w-100">{{ _('Start Free Trial') }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <p class="lead text-muted mb-4">{{ _('All plans include a 14-day free trial. No credit card required.') }}</p>
+            <a href="{{ url_for('contact') }}" class="btn btn-outline-primary">{{ _('Contact us for Enterprise solutions') }}</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

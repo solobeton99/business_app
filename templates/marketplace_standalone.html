@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace - Business Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --sidebar-bg: #1a73e8;
+            --sidebar-hover: #1967d2;
+            --sidebar-active: #0d47a1;
+            --sidebar-text: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 48px 0 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: var(--sidebar-bg);
+            color: var(--sidebar-text);
+        }
+
+        .sidebar .nav-link {
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+            padding: 0.75rem 1.25rem;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sidebar .nav-link:hover {
+            color: #ffffff;
+            background-color: var(--sidebar-hover);
+        }
+
+        .sidebar .nav-link.active {
+            color: #ffffff;
+            background-color: var(--sidebar-active);
+        }
+
+        .main-content {
+            margin-top: 48px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+            height: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 200px;
+            background-color: #f8f9fa;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .product-details {
+            padding: 1rem;
+        }
+
+        .product-price {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1a73e8;
+        }
+
+        .category-badge {
+            background-color: #e8f0fe;
+            color: #1a73e8;
+            padding: 0.25rem 0.75rem;
+            border-radius: 16px;
+            font-size: 0.875rem;
+        }
+
+        .metric-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            height: 100%;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #1a73e8;
+        }
+
+        .metric-label {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <div class="text-center mb-4">
+                        <h5 class="text-white">Business Management</h5>
+                    </div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dashboard">
+                                <i class="bi bi-house-door"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/employees">
+                                <i class="bi bi-people"></i> Employees
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/companies">
+                                <i class="bi bi-building"></i> Companies
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/my-tasks">
+                                <i class="bi bi-check2-square"></i> My Tasks
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/data-analysis">
+                                <i class="bi bi-bar-chart"></i> Data Analysis
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/stocks">
+                                <i class="bi bi-graph-up-arrow"></i> Stocks
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/marketplace">
+                                <i class="bi bi-shop"></i> Marketplace
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Marketplace</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group me-2">
+                            <button type="button" class="btn btn-outline-secondary">My Listings</button>
+                            <button type="button" class="btn btn-outline-secondary">Orders</button>
+                        </div>
+                        <button type="button" class="btn btn-primary">
+                            <i class="bi bi-plus"></i> Add Listing
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-3">
+                        <div class="metric-card">
+                            <div class="metric-value">324</div>
+                            <div class="metric-label">Active Listings</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="metric-card">
+                            <div class="metric-value">$45,892</div>
+                            <div class="metric-label">Monthly Sales</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="metric-card">
+                            <div class="metric-value">4.8</div>
+                            <div class="metric-label">Average Rating</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="metric-card">
+                            <div class="metric-value">89%</div>
+                            <div class="metric-label">Response Rate</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="d-flex gap-2 flex-wrap">
+                            <span class="category-badge">All Categories</span>
+                            <span class="category-badge">Electronics</span>
+                            <span class="category-badge">Fashion</span>
+                            <span class="category-badge">Home & Garden</span>
+                            <span class="category-badge">Sports</span>
+                            <span class="category-badge">Books</span>
+                            <span class="category-badge">Automotive</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-3">
+                        <div class="product-card">
+                            <div class="product-image"></div>
+                            <div class="product-details">
+                                <span class="badge bg-primary mb-2">Electronics</span>
+                                <h5 class="mb-1">Wireless Headphones</h5>
+                                <div class="product-price mb-2">$129.99</div>
+                                <p class="text-muted small mb-0">Premium noise-canceling headphones with 30h battery life</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="product-card">
+                            <div class="product-image"></div>
+                            <div class="product-details">
+                                <span class="badge bg-success mb-2">Fashion</span>
+                                <h5 class="mb-1">Leather Wallet</h5>
+                                <div class="product-price mb-2">$49.99</div>
+                                <p class="text-muted small mb-0">Genuine leather wallet with RFID protection</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="product-card">
+                            <div class="product-image"></div>
+                            <div class="product-details">
+                                <span class="badge bg-info mb-2">Home & Garden</span>
+                                <h5 class="mb-1">Smart Plant Pot</h5>
+                                <div class="product-price mb-2">$34.99</div>
+                                <p class="text-muted small mb-0">Self-watering pot with soil moisture monitoring</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="product-card">
+                            <div class="product-image"></div>
+                            <div class="product-details">
+                                <span class="badge bg-warning mb-2">Sports</span>
+                                <h5 class="mb-1">Fitness Tracker</h5>
+                                <div class="product-price mb-2">$89.99</div>
+                                <p class="text-muted small mb-0">Water-resistant tracker with heart rate monitor</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

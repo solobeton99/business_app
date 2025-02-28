@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stocks - Business Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --sidebar-bg: #1a73e8;
+            --sidebar-hover: #1967d2;
+            --sidebar-active: #0d47a1;
+            --sidebar-text: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 48px 0 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: var(--sidebar-bg);
+            color: var(--sidebar-text);
+        }
+
+        .sidebar .nav-link {
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+            padding: 0.75rem 1.25rem;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sidebar .nav-link:hover {
+            color: #ffffff;
+            background-color: var(--sidebar-hover);
+        }
+
+        .sidebar .nav-link.active {
+            color: #ffffff;
+            background-color: var(--sidebar-active);
+        }
+
+        .main-content {
+            margin-top: 48px;
+        }
+
+        .stock-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            height: 100%;
+        }
+
+        .stock-price {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #1a73e8;
+        }
+
+        .stock-change {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .stock-change.positive {
+            color: #28a745;
+        }
+
+        .stock-change.negative {
+            color: #dc3545;
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <div class="text-center mb-4">
+                        <h5 class="text-white">Business Management</h5>
+                    </div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dashboard">
+                                <i class="bi bi-house-door"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/employees">
+                                <i class="bi bi-people"></i> Employees
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/companies">
+                                <i class="bi bi-building"></i> Companies
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/my-tasks">
+                                <i class="bi bi-check2-square"></i> My Tasks
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/data-analysis">
+                                <i class="bi bi-bar-chart"></i> Data Analysis
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/stocks">
+                                <i class="bi bi-graph-up-arrow"></i> Stocks
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/marketplace">
+                                <i class="bi bi-shop"></i> Marketplace
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Stocks</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group me-2">
+                            <button type="button" class="btn btn-outline-secondary">Watchlist</button>
+                            <button type="button" class="btn btn-outline-secondary">Portfolio</button>
+                        </div>
+                        <button type="button" class="btn btn-primary">
+                            <i class="bi bi-plus"></i> Add Stock
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-3">
+                        <div class="stock-card">
+                            <h6 class="text-muted mb-2">AAPL</h6>
+                            <div class="stock-price">$182.63</div>
+                            <div class="stock-change positive">+2.45 (1.36%)</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stock-card">
+                            <h6 class="text-muted mb-2">MSFT</h6>
+                            <div class="stock-price">$376.17</div>
+                            <div class="stock-change positive">+3.82 (1.03%)</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stock-card">
+                            <h6 class="text-muted mb-2">GOOGL</h6>
+                            <div class="stock-price">$142.65</div>
+                            <div class="stock-change negative">-1.23 (0.85%)</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stock-card">
+                            <h6 class="text-muted mb-2">AMZN</h6>
+                            <div class="stock-price">$153.42</div>
+                            <div class="stock-change positive">+0.87 (0.57%)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="chart-container">
+                            <h3 class="h5 mb-3">Market Overview</h3>
+                            <div style="height: 400px; background-color: #f8f9fa;"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="chart-container">
+                            <h3 class="h5 mb-3">Portfolio Distribution</h3>
+                            <div style="height: 400px; background-color: #f8f9fa;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="chart-container">
+                            <h3 class="h5 mb-3">Watchlist</h3>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Symbol</th>
+                                            <th>Company</th>
+                                            <th>Price</th>
+                                            <th>Change</th>
+                                            <th>Market Cap</th>
+                                            <th>Volume</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>TSLA</td>
+                                            <td>Tesla, Inc.</td>
+                                            <td>$248.48</td>
+                                            <td class="text-success">+3.21%</td>
+                                            <td>$788.2B</td>
+                                            <td>100.2M</td>
+                                        </tr>
+                                        <tr>
+                                            <td>META</td>
+                                            <td>Meta Platforms, Inc.</td>
+                                            <td>$334.92</td>
+                                            <td class="text-danger">-0.78%</td>
+                                            <td>$862.4B</td>
+                                            <td>22.8M</td>
+                                        </tr>
+                                        <tr>
+                                            <td>NVDA</td>
+                                            <td>NVIDIA Corporation</td>
+                                            <td>$477.76</td>
+                                            <td class="text-success">+2.12%</td>
+                                            <td>$1.18T</td>
+                                            <td>35.6M</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
